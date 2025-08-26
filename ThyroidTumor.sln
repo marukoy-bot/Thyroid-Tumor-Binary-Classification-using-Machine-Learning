@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36301.6
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThyroidTumor", "ThyroidTumor\ThyroidTumor.csproj", "{98C58399-D5DB-4E9F-8665-6CCA5817617A}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "ASTRA_SETUP", "ASTRA_SETUP\ASTRA_SETUP.vdproj", "{B115B5FA-BF34-2B7D-53D4-753BEF564FDF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{98C58399-D5DB-4E9F-8665-6CCA5817617A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98C58399-D5DB-4E9F-8665-6CCA5817617A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98C58399-D5DB-4E9F-8665-6CCA5817617A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98C58399-D5DB-4E9F-8665-6CCA5817617A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B115B5FA-BF34-2B7D-53D4-753BEF564FDF}.Debug|Any CPU.ActiveCfg = Debug
+		{B115B5FA-BF34-2B7D-53D4-753BEF564FDF}.Release|Any CPU.ActiveCfg = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B12CCC6B-827E-4B95-9F45-8195D05C0549}
+	EndGlobalSection
+EndGlobal
