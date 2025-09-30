@@ -6,21 +6,22 @@ using System.Threading.Tasks;
 using ThyroidTumor.Models;
 using ThyroidTumor.Utils;
 using System.Drawing.Drawing2D;
+using MaterialSkin.Controls;
 
 namespace ThyroidTumor
 {
-    public partial class frmEntry : Form
+    public partial class frmEntry : MaterialForm
     {
         readonly ModelHandler handler = new();
         (int Width, int Height) formDims;
         (int Width, int Height) picBoxDims;
+        private PredictionLabel predictionLabel;
 
         public frmEntry()
         {
             InitializeComponent();
             this.DoubleBuffered = true;
             //this.SetStyle(ControlStyles.ResizeRedraw | ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint, true);
-
         }
 
         void UpdateGradient()
@@ -52,6 +53,7 @@ namespace ThyroidTumor
 
         private async void frmEntry_Load(object sender, EventArgs e)
         {
+            //UpdateGradient();
             formDims = (ClientSize.Width, ClientSize.Height);
             picBoxDims = (pictureBox1.Width, pictureBox1.Height);
             Cursor = Cursors.WaitCursor;
@@ -91,8 +93,12 @@ namespace ThyroidTumor
                     if (result.Trim().StartsWith("{"))
                     {
                         var resultObj = JsonSerializer.Deserialize<PredictionResult?>(result);
-                        lblResult.Text = $"Prediction: {resultObj?.label}";
-                        //lblResult.Text = $"Prediction: {resultObj?.label} | Prediction Value: {resultObj?.prediction_value:F4}";
+
+                        double conf = resultObj?.prediction_value ?? 0;
+                        if (resultObj?.label == "benign")
+                            conf = 1 - conf;
+
+                        lblResult.Text = $"Prediction: {resultObj?.label} | Accuracy: {conf * 100:F2}%";
                     }
                     else
                     {
@@ -100,6 +106,8 @@ namespace ThyroidTumor
                         lblResult.Text = "Prediction Failed";
                     }
 
+                    // recenter horizontally
+                    lblResult.Left = (this.ClientSize.Width - lblResult.Width) / 2;
                 }
                 else
                 {
@@ -138,14 +146,21 @@ namespace ThyroidTumor
                     if (result.Trim().StartsWith("{"))
                     {
                         var resultObj = JsonSerializer.Deserialize<PredictionResult?>(result);
-                        lblResult.Text = $"Prediction: {resultObj?.label}";
-                        //lblResult.Text = $"Prediction: {resultObj?.label} | Prediction Value: {resultObj?.prediction_value:F4}";
+
+                        double conf = resultObj?.prediction_value ?? 0;
+                        if (resultObj?.label == "benign")
+                            conf = 1 - conf;
+
+                        lblResult.Text = $"Prediction: {resultObj?.label} | Accuracy: {conf * 100:F2}%";
                     }
                     else
                     {
                         MessageBox.Show("Script Returned invalid response:\n" + result);
                         lblResult.Text = "Prediction Failed";
                     }
+
+                    // recenter horizontally
+                    lblResult.Left = (this.ClientSize.Width - lblResult.Width) / 2;
                 }
                 finally
                 {
